@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+
+  chrome:
+    image: selenium/standalone-chrome
+    hostname: chrome
+    ports:
+      - 4444:4444
+
+  application:
+    build: ./
+    depends_on:
+      - chrome
+    environment:
+      - REMOTE_HOST=http://chrome:4444
+      - VOLUME_PATH=/opt/dat
+    volumes:
+      - ./results:/opt/dat
