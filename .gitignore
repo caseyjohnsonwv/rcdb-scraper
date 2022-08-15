@@ -4,4 +4,4 @@ pyvenv.cfg
 Scripts/
 
 refs/*
-results/*
+*.csv

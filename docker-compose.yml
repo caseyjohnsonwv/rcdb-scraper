@@ -16,4 +16,4 @@ services:
       - REMOTE_HOST=http://chrome:4444
       - VOLUME_PATH=/opt/dat
     volumes:
-      - ./results:/opt/dat
+      - ./:/opt/dat

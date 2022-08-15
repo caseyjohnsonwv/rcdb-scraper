@@ -7,4 +7,4 @@ Using Selenium and Python to scrape roller coaster data from the official [Rolle
 Assuming you have Docker installed and your daemon is running:
 
 1. Clone this repo, setup a virtual env, etc etc
-2. `docker-compose up --remove-orphans --build`
+2. `docker-compose up --remove-orphans --build --abort-on-container-exit`

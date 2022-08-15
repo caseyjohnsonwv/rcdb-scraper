@@ -22,7 +22,7 @@ with open(f"{volume_path}/rides.csv", 'w') as f:
     with webdriver.Remote(remote_host, options=chrome_options) as wd:
         base_url = 'http://rcdb.com'
         
-        for id in range(1, 100):
+        for id in range(1, 10):
             wd.get(f"{base_url}/{id}.htm")
             
             feature_xpath = "//section[@id='objdiv']/div[@id='demo']/div[@id='feature']"
