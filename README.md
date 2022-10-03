@@ -11,7 +11,7 @@ Assuming you have Docker installed and your daemon is running:
 
 Sample CSV output:
 ```
-1,Raptor,Cedar Point
-2,Texas Giant,Six Flags Over Texas
-3,Demon,Six Flags Great America
+1,Raptor,Cedar Point,1994,Bolliger & Mabillard,Operating,http://rcdb.com/aaaaabc
+2,Texas Giant,Six Flags Over Texas,1990,Dinn Corporation,Removed,http://rcdb.com/aaaaaic
+3,Demon,Six Flags Great America,1976,Arrow Dynamics,Operating,http://rcdb.com/aaaaalc
 ```
