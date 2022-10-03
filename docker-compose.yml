@@ -7,15 +7,18 @@ services:
     hostname: chrome
     ports:
       - 4444:4444
+    environment:
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+      - SE_NODE_MAX_SESSIONS=10
 
   application:
     build: ./
     depends_on:
       - chrome
     environment:
-      - DEST_FILENAME=rides_1_to_100.csv
+      - DEST_FILENAME=rides.csv
       - MIN_ID=1
-      - MAX_ID=100
+      - MAX_ID=1000
       - REMOTE_HOST=http://chrome:4444
       - VOLUME_PATH=/opt/dat
     volumes:

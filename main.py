@@ -47,7 +47,11 @@ with webdriver.Remote(remote_host, options=chrome_options) as wd:
                 wd.get(f"{base_url}/{id}.htm")
 
                 # determine if this id is a ride ... if not, it could be lots of other things (park, person, etc), so skip it
-                links = wd.find_elements(by=By.XPATH, value=f"{feature_xpath}/ul")[-1].text
+                try:
+                    links = wd.find_elements(by=By.XPATH, value=f"{feature_xpath}/ul")[-1].text
+                except IndexError:
+                    print(f"Can't tell if id = {id} is park or ride... skipping")
+                    continue
                 if 'parks nearby' in links.lower():
                     print(f"id = {id} is a park, not a ride")
                     continue
@@ -67,8 +71,12 @@ with webdriver.Remote(remote_host, options=chrome_options) as wd:
                 park = wd.find_element(by=By.XPATH, value=f"{feature_xpath}/div/a").text
                 
                 # year opened
-                date_opened = wd.find_element(by=By.XPATH, value=f"{feature_xpath}/p/time").text
-                year_opened = re.findall('\d{4}', date_opened)[0]
+                try:
+                    date_opened = wd.find_element(by=By.XPATH, value=f"{feature_xpath}/p/time").text
+                    year_opened = re.findall('\d{4}', date_opened)[0]
+                except Exception:
+                    print(f"Could not find year opened for id = {id}")
+                    year_opened = ''
 
                 # status
                 status = wd.find_element(by=By.XPATH, value=f"{feature_xpath}/p").text

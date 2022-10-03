@@ -15,3 +15,10 @@ Sample CSV output:
 2,Texas Giant,Six Flags Over Texas,1990,Dinn Corporation,Removed,http://rcdb.com/aaaaaic
 3,Demon,Six Flags Great America,1976,Arrow Dynamics,Operating,http://rcdb.com/aaaaalc
 ```
+
+## Utils
+
+To concatenate multiple `.csv` files, use the `csvconcat.py` script in `/utils`:
+```
+python utils/csvconcat.py --target . --filename output.csv
+```
