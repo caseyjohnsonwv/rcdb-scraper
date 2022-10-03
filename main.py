@@ -7,6 +7,11 @@ from selenium.webdriver.common.by import By
 
 remote_host = getenv('REMOTE_HOST')
 volume_path = getenv('VOLUME_PATH')
+dest_filename = getenv('DEST_FILENAME')
+
+min_rcdb_id = int(getenv('MIN_ID'))
+max_rcdb_id = int(getenv('MAX_ID')) + 1 #makes max inclusive
+step = 10
 
 # wait for selenium container to start chrome
 sleep(3)
@@ -17,11 +22,9 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-gpu')
 
-max_rcdb_id = 200
-step = 10
 
 # create empty csv file
-with open(f"{volume_path}/rides.csv", 'w') as f:
+with open(f"{volume_path}/{dest_filename}", 'w') as f:
     pass
 
 # scrape ride data from rcdb
@@ -31,10 +34,10 @@ with webdriver.Remote(remote_host, options=chrome_options) as wd:
     feature_xpath = f"{demo_xpath}/div[@id='feature']"
     
     # continually reopen file and append to reduce memory usage
-    id = 1
-    ride_id = 1
+    id = min_rcdb_id
+    ride_id = min_rcdb_id
     while ride_id < max_rcdb_id:
-        with open(f"{volume_path}/rides.csv", 'a') as f:
+        with open(f"{volume_path}/{dest_filename}", 'a') as f:
             writer = csv.writer(f, delimiter=',')
             for id in range(ride_id, ride_id + step):
                 if id >= max_rcdb_id:

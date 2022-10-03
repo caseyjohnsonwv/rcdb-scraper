@@ -13,6 +13,9 @@ services:
     depends_on:
       - chrome
     environment:
+      - DEST_FILENAME=rides_1_to_100.csv
+      - MIN_ID=1
+      - MAX_ID=100
       - REMOTE_HOST=http://chrome:4444
       - VOLUME_PATH=/opt/dat
     volumes:
